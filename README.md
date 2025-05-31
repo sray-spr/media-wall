@@ -1,4 +1,5 @@
-##Media Wall
+## Media Wall App
+Implemented Dynamic Grid with Searching and implemented recycling of DOM Nodes using react-window.
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
 
