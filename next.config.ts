@@ -1,8 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/wall",
+        permanent: true,
+      },
+    ];
+  },
   reactStrictMode: true,
+  images: {
+    domains: ["picsum.photos"],
+  },
 };
 
 export default nextConfig;
