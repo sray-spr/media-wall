@@ -1,8 +1,5 @@
 //Imports
 
-//Layout
-import Layout from "@/components/Layout";
-
 //Styles
 import "@/styles/globals.css";
 import App from "next/app";
@@ -16,9 +13,7 @@ export default class MyApp extends App {
 
     return (
       <SpacewebProvider direction="ltr" theme={light}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </SpacewebProvider>
     );
   }

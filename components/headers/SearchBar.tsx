@@ -1,23 +1,18 @@
-import styles from "../styles/searchbar.module.css";
-
-import { useContext } from "react";
-import { AssetsContext, SearchBarContext } from "@/components/Layout";
+import { AssetArray } from "@/types/AssetType";
+import styles from "./searchbar.module.css";
 
 import { Search } from "@sprinklrjs/spaceweb/search";
+import { Dispatch, SetStateAction } from "react";
 
-export default function SearchBar() {
-  const context = useContext(AssetsContext);
-  if (!context) {
-    throw new Error("AssetsContext is undefined");
-  }
-  const { assets } = context;
-
-  const searchContext = useContext(SearchBarContext);
-  if (!searchContext) {
-    throw new Error("SearchBarContext is undefined");
-  }
-  const { searchBarText, setSearchBarText } = searchContext;
-
+export default function SearchBar({
+  assets,
+  searchBarText,
+  setSearchBarText,
+}: {
+  assets: AssetArray;
+  searchBarText: string;
+  setSearchBarText: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <div className={styles.container}>
       <div className={styles.assetcount}>

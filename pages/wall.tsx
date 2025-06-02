@@ -1,16 +1,17 @@
 //Imports
+import CardGrid from "@/components/cardGrid";
+import NavBar from "@/components/headers/NavBar";
+import SearchBar from "@/components/headers/SearchBar";
 
 //Hooks and Contexts
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 //Data
 import { AssetData } from "@/tempData/Data";
 
 //Type
 
-import { AssetsContext, SearchBarContext } from "@/components/Layout";
 import { AssetArray } from "@/types/AssetType";
-import CardGrid from "@/components/cardGrid";
 
 //Function to get Images with given filters
 function getData(keyword: string): AssetArray {
@@ -29,17 +30,9 @@ Wall.getInitialProps = async () => {
 };
 
 export default function Wall({ InitialAssets }: { InitialAssets: AssetArray }) {
-  const checkAssetContext = useContext(AssetsContext);
-  if (!checkAssetContext) {
-    throw new Error("AssetContext is undefined");
-  }
-  const { assets, setAssets } = checkAssetContext;
+  const [searchBarText, setSearchBarText] = useState("");
+  const [assets, setAssets] = useState<AssetArray>([]);
 
-  const checkSearchContext = useContext(SearchBarContext);
-  if (!checkSearchContext) {
-    throw new Error("SearchBarContext is undefined");
-  }
-  const { searchBarText } = checkSearchContext;
   const hasMounted = useRef(false);
 
   useEffect(() => {
@@ -56,8 +49,19 @@ export default function Wall({ InitialAssets }: { InitialAssets: AssetArray }) {
   }, [searchBarText, setAssets]);
 
   return (
-    <div className="mediawall">
-      <CardGrid assets={assets} />
+    <div className="container">
+      <div className="header">
+        <NavBar />
+        <SearchBar
+          assets={assets}
+          searchBarText={searchBarText}
+          setSearchBarText={setSearchBarText}
+        />
+      </div>
+
+      <div className="mediawall">
+        <CardGrid assets={assets} />
+      </div>
     </div>
   );
 }
