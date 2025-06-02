@@ -2,19 +2,17 @@
 
 //Styles
 import "@/styles/globals.css";
-import App from "next/app";
 
 import SpacewebProvider from "@sprinklrjs/spaceweb/spacewebProvider";
 import light from "@sprinklrjs/spaceweb-themes/hyperspace/light";
+import { AppProps } from "next/app";
 
-export default class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <SpacewebProvider direction="ltr" theme={light}>
+      <Component {...pageProps} />
+    </SpacewebProvider>
+  );
+};
 
-    return (
-      <SpacewebProvider direction="ltr" theme={light}>
-        <Component {...pageProps} />
-      </SpacewebProvider>
-    );
-  }
-}
+export default App;

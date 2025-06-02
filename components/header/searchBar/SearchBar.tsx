@@ -1,10 +1,10 @@
-import { AssetArray } from "@/types/AssetType";
-import styles from "./searchbar.module.css";
+import { AssetArray } from "@/types";
+import styles from "./searchBar.module.css";
 
 import { Search } from "@sprinklrjs/spaceweb/search";
 import { Dispatch, SetStateAction } from "react";
 
-export default function SearchBar({
+const SearchBar = ({
   assets,
   searchBarText,
   setSearchBarText,
@@ -12,7 +12,7 @@ export default function SearchBar({
   assets: AssetArray;
   searchBarText: string;
   setSearchBarText: Dispatch<SetStateAction<string>>;
-}) {
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.assetcount}>
@@ -36,4 +36,6 @@ export default function SearchBar({
       </div>
     </div>
   );
-}
+};
+
+export { SearchBar };

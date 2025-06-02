@@ -1,7 +1,7 @@
-import styles from "./navbar.module.css";
+import styles from "./navBar.module.css";
 import Image from "next/image";
 
-export default function NavBar() {
+const NavBar = () => {
   return (
     <div className={styles.navbar}>
       <Image
@@ -15,4 +15,6 @@ export default function NavBar() {
       <span className={styles.title}>A Board</span>
     </div>
   );
-}
+};
+
+export { NavBar };

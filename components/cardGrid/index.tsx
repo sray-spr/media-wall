@@ -1,1 +1,1 @@
-export { default } from "./CardGrid";
+export { CardGrid } from "./CardGrid";

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Asset } from "@/types/AssetType";
-import styles from "./Card.module.css";
+import { Asset } from "@/types";
+import styles from "./card.module.css";
 
-export default function Card({ assetInfo }: { assetInfo: Asset }) {
+const Card = ({ assetInfo }: { assetInfo: Asset }) => {
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
@@ -22,4 +22,5 @@ export default function Card({ assetInfo }: { assetInfo: Asset }) {
       </div>
     </div>
   );
-}
+};
+export { Card };

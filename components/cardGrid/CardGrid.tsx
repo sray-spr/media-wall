@@ -1,16 +1,16 @@
-import Card from "./card";
+import { Card } from "./card";
 
-import styles from "./CardGrid.module.css";
+import styles from "./cardGrid.module.css";
 
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { AssetArray } from "@/types/AssetType";
+import { AssetArray } from "@/types";
 
 const CardWidth = 300;
 const CardHeight = 300;
 const spacing = 24;
 
-export default function CardGrid({ assets }: { assets: AssetArray }) {
+const CardGrid = ({ assets }: { assets: AssetArray }) => {
   function generateCard({
     columnIndex,
     rowIndex,
@@ -59,4 +59,6 @@ export default function CardGrid({ assets }: { assets: AssetArray }) {
       </AutoSizer>
     </div>
   );
-}
+};
+
+export { CardGrid };

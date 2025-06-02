@@ -1,4 +1,4 @@
-import { AssetArray } from "@/types/AssetType";
+import { AssetArray } from "@/types";
 
 function makeid(length: number) {
   let result = "";
@@ -10,6 +10,8 @@ function makeid(length: number) {
   }
   return result;
 }
+
+//Generating Data
 
 const imageData: AssetArray = Array.from({ length: 100 }, (_, i) => ({
   id: (i + 1).toString(),
@@ -26,6 +28,7 @@ const imageData2: AssetArray = Array.from({ length: 100 }, (_, i) => ({
 
 const totalData = imageData2.concat(imageData);
 totalData.sort(() => Math.random() - 0.5);
+
 export const AssetData = {
   data: {
     assets: totalData,
