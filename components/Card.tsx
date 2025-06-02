@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ImgObjectType } from "@/types/imageType";
+import { ImgObjectType } from "@/types/ImageType";
 import styles from "../styles/ImageCard.module.css";
 
 export default function Card({ imgInfo }: { imgInfo: ImgObjectType }) {

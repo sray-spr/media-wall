@@ -1,5 +1,5 @@
 //Styles
-import { defaultImgObjectArray, ImgObjectArrayType } from "@/types/imageType";
+import { defaultImgObjectArray, ImgObjectArrayType } from "@/types/ImageType";
 import styles from "../styles/layout.module.css";
 
 //SubComponents

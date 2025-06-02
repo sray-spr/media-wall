@@ -4,7 +4,7 @@ import styles from "../styles/ImageGrid.module.css";
 
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { ImgObjectArrayType } from "@/types/imageType";
+import { ImgObjectArrayType } from "@/types/ImageType";
 
 const CardWidth = 300;
 const CardHeight = 300;

@@ -1,5 +1,5 @@
 //Imports
-import CardGrid from "@/components/cardgrid";
+import CardGrid from "@/components/CardGrid";
 
 //Hooks and Contexts
 import { useContext, useEffect, useRef } from "react";
@@ -10,7 +10,7 @@ import { imageD } from "@/tempData/imageData";
 //Type
 
 import { ImagesContext, SearchBarContext } from "@/components/Layout";
-import { ImgObjectArrayType } from "@/types/imageType";
+import { ImgObjectArrayType } from "@/types/ImageType";
 
 //Function to get Images with given filters
 function getData(keyword: string): ImgObjectArrayType {
