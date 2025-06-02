@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { ImgObjectType } from "@/types/ImageType";
-import styles from "../styles/ImageCard.module.css";
+import { Asset } from "@/types/AssetType";
+import styles from "./Card.module.css";
 
-export default function Card({ imgInfo }: { imgInfo: ImgObjectType }) {
+export default function Card({ assetInfo }: { assetInfo: Asset }) {
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
-        <a href={imgInfo.url} target="_blank">
+        <a href={assetInfo.previewUrl} target="_blank">
           <Image
-            src={imgInfo.url}
+            src={assetInfo.previewUrl}
             alt={"This should be an image"}
             fill
             style={{ objectFit: "contain" }}
@@ -17,7 +17,7 @@ export default function Card({ imgInfo }: { imgInfo: ImgObjectType }) {
       </div>
 
       <div className={styles.title}>
-        <div className={styles.name}>{imgInfo.title}</div>
+        <div className={styles.name}>{assetInfo.title}</div>
         <div className={styles.size}>{"70kB"}</div>
       </div>
     </div>

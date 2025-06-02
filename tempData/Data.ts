@@ -1,4 +1,6 @@
-function makeid(length:number) {
+import { AssetArray } from "@/types/AssetType";
+
+function makeid(length: number) {
   let result = "";
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -9,23 +11,23 @@ function makeid(length:number) {
   return result;
 }
 
-const imageData = Array.from({ length: 100 }, (_, i) => ({
+const imageData: AssetArray = Array.from({ length: 100 }, (_, i) => ({
   id: (i + 1).toString(),
-  url: `https://picsum.photos/id/${i + 200}/1920/1080`,
   title: makeid(10),
+  previewUrl: `https://picsum.photos/id/${i + 200}/1920/1080`,
+  category: "image",
 }));
-const imageData2 = Array.from({ length: 100 }, (_, i) => ({
+const imageData2: AssetArray = Array.from({ length: 100 }, (_, i) => ({
   id: (i + 101).toString(),
-  url: `https://picsum.photos/id/${i + 200}/1080/1920`,
   title: makeid(12),
+  previewUrl: `https://picsum.photos/id/${i + 200}/1080/1920`,
+  category: "image",
 }));
-
-
 
 const totalData = imageData2.concat(imageData);
 totalData.sort(() => Math.random() - 0.5);
-export const imageD = {
+export const AssetData = {
   data: {
-    photos: totalData,
+    assets: totalData,
   },
 };

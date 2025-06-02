@@ -9,13 +9,13 @@
   padding-right: 3%;
   color: #575757;
   font-size: 12px;
-align-items: center;
+  align-items: center;
   justify-content: space-between;
 }
-.assetcount{
-    word-break: break-all;
-    color: #0A0A14;
-    float: left;
-    font-size: 16px;
-    font-weight: bold;
+.assetcount {
+  word-break: break-all;
+  color: #0a0a14;
+  float: left;
+  font-size: 16px;
+  font-weight: bold;
 }

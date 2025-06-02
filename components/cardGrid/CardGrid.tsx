@@ -1,20 +1,16 @@
-import Card from "./Card";
+import Card from "./card";
 
-import styles from "../styles/ImageGrid.module.css";
+import styles from "./CardGrid.module.css";
 
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
-import { ImgObjectArrayType } from "@/types/ImageType";
+import { AssetArray } from "@/types/AssetType";
 
 const CardWidth = 300;
 const CardHeight = 300;
 const spacing = 24;
 
-export default function CardGrid({
-  imageObjects,
-}: {
-  imageObjects: ImgObjectArrayType;
-}) {
+export default function CardGrid({ assets }: { assets: AssetArray }) {
   function generateCard({
     columnIndex,
     rowIndex,
@@ -22,7 +18,7 @@ export default function CardGrid({
     data,
   }: GridChildComponentProps) {
     const imageIndex = data.columnCount * rowIndex + columnIndex;
-    if (imageIndex >= imageObjects.length) return null;
+    if (imageIndex >= assets.length) return null;
     return (
       <div
         style={{
@@ -31,7 +27,7 @@ export default function CardGrid({
           height: CardHeight,
         }}
       >
-        <Card imgInfo={imageObjects[imageIndex]} />
+        <Card assetInfo={assets[imageIndex]} />
       </div>
     );
   }
@@ -44,7 +40,7 @@ export default function CardGrid({
             1,
             Math.floor(width / (CardWidth + spacing))
           );
-          const rowCount = Math.ceil(imageObjects.length / columnCount);
+          const rowCount = Math.ceil(assets.length / columnCount);
           const updatedColumnWidth = width / columnCount;
           return (
             <Grid

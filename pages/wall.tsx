@@ -1,63 +1,39 @@
 //Imports
-import CardGrid from "@/components/CardGrid";
 
 //Hooks and Contexts
 import { useContext, useEffect, useRef } from "react";
 
 //Data
-import { imageD } from "@/tempData/imageData";
+import { AssetData } from "@/tempData/Data";
 
 //Type
 
-import { ImagesContext, SearchBarContext } from "@/components/Layout";
-import { ImgObjectArrayType } from "@/types/ImageType";
+import { AssetsContext, SearchBarContext } from "@/components/Layout";
+import { AssetArray } from "@/types/AssetType";
+import CardGrid from "@/components/cardGrid";
 
 //Function to get Images with given filters
-function getData(keyword: string): ImgObjectArrayType {
-  const json = imageD;
+function getData(keyword: string): AssetArray {
+  const json = AssetData;
 
-  const filteredImages = json.data.photos.filter((photo) =>
-    photo.title.toLowerCase().includes(keyword.toLowerCase())
+  const filteredAssets: AssetArray = json.data.assets.filter((asset) =>
+    asset.title.toLowerCase().includes(keyword.toLowerCase())
   );
 
-  return filteredImages;
+  return filteredAssets;
 }
 
 Wall.getInitialProps = async () => {
-  // For Query using GraphQL
-  // const query = `
-  //     query {
-  //         photos(first: 20) {
-  //             id,
-  //             url,
-  //             title
-  //         }
-  //     }
-
-  // `;
-  // const res = await fetch("https://graphqlplaceholder.vercel.app/graphql",
-  //     {
-  //         method: "POST",
-  //         headers: {
-  //             "Content-type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //             query
-  //         }),
-  //     }
-  // )
-  // const json = await res.json()
-
   console.log("Get Initial Props Ran");
-  return { photos: getData("") };
+  return { InitialAssets: getData("") };
 };
 
-export default function Wall({ photos }: { photos: ImgObjectArrayType }) {
-  const checkImagesContext = useContext(ImagesContext);
-  if (!checkImagesContext) {
-    throw new Error("ImagesContext is undefined");
+export default function Wall({ InitialAssets }: { InitialAssets: AssetArray }) {
+  const checkAssetContext = useContext(AssetsContext);
+  if (!checkAssetContext) {
+    throw new Error("AssetContext is undefined");
   }
-  const { images, setImages } = checkImagesContext;
+  const { assets, setAssets } = checkAssetContext;
 
   const checkSearchContext = useContext(SearchBarContext);
   if (!checkSearchContext) {
@@ -67,21 +43,21 @@ export default function Wall({ photos }: { photos: ImgObjectArrayType }) {
   const hasMounted = useRef(false);
 
   useEffect(() => {
-    setImages(photos);
-  }, [photos, setImages]);
+    setAssets(InitialAssets);
+  }, [InitialAssets, setAssets]);
 
   useEffect(() => {
     if (!hasMounted.current) {
       hasMounted.current = true;
       return;
     } else {
-      setImages(getData(searchBarText));
+      setAssets(getData(searchBarText));
     }
-  }, [searchBarText, setImages]);
+  }, [searchBarText, setAssets]);
 
   return (
     <div className="mediawall">
-      <CardGrid imageObjects={images} />
+      <CardGrid assets={assets} />
     </div>
   );
 }

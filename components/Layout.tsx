@@ -1,15 +1,18 @@
 //Styles
-import { defaultImgObjectArray, ImgObjectArrayType } from "@/types/ImageType";
 import styles from "../styles/layout.module.css";
 
 //SubComponents
-import Navbar from "./Navbar";
-import Searchbar from "./Searchbar";
-import { createContext, Dispatch, SetStateAction, useState } from "react";
 
-export type ImagesContextType = {
-  images: ImgObjectArrayType;
-  setImages: Dispatch<SetStateAction<ImgObjectArrayType>>;
+import { createContext, Dispatch, SetStateAction, useState } from "react";
+import NavBar from "./NavBar";
+import SearchBar from "./SearchBar";
+
+//Types
+import { AssetArray } from "@/types/AssetType";
+
+export type AssetsContextType = {
+  assets: AssetArray;
+  setAssets: Dispatch<SetStateAction<AssetArray>>;
 };
 
 export type SearchBarContextType = {
@@ -17,21 +20,24 @@ export type SearchBarContextType = {
   setSearchBarText: Dispatch<SetStateAction<string>>;
 };
 
+//Context
+
 export const SearchBarContext = createContext<SearchBarContextType | undefined>(
   undefined
 );
-export const ImagesContext = createContext<ImagesContextType | undefined>(
+export const AssetsContext = createContext<AssetsContextType | undefined>(
   undefined
 );
 
 export default function Layout({ children }) {
   const [searchBarText, setSearchBarText] = useState("");
-  const [images, setImages] = useState(defaultImgObjectArray);
+  const [assets, setAssets] = useState<AssetArray>([]);
+
   return (
-    <ImagesContext.Provider
+    <AssetsContext.Provider
       value={{
-        images,
-        setImages,
+        assets,
+        setAssets,
       }}
     >
       <SearchBarContext.Provider
@@ -42,12 +48,12 @@ export default function Layout({ children }) {
       >
         <div className={styles.container}>
           <div className={styles.header}>
-            <Navbar />
-            <Searchbar />
+            <NavBar />
+            <SearchBar />
           </div>
           <main className={styles.main}>{children}</main>
         </div>
       </SearchBarContext.Provider>
-    </ImagesContext.Provider>
+    </AssetsContext.Provider>
   );
 }

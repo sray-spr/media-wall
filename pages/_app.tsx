@@ -5,15 +5,21 @@ import Layout from "@/components/Layout";
 
 //Styles
 import "@/styles/globals.css";
+import App from "next/app";
 
-import type { AppProps } from "next/app";
+import SpacewebProvider from "@sprinklrjs/spaceweb/spacewebProvider";
+import light from "@sprinklrjs/spaceweb-themes/hyperspace/light";
 
-export default function App({ Component, pageProps }: AppProps) {
-  // console.log(pageProps);
+export default class MyApp extends App {
+  render() {
+    const { Component, pageProps } = this.props;
 
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
+    return (
+      <SpacewebProvider direction="ltr" theme={light}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SpacewebProvider>
+    );
+  }
 }

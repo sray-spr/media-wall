@@ -1,14 +1,17 @@
 import styles from "../styles/searchbar.module.css";
 
 import { useContext } from "react";
-import { ImagesContext, SearchBarContext } from "@/components/Layout";
+import { AssetsContext, SearchBarContext } from "@/components/Layout";
 
-export default function Searchbar() {
-  const context = useContext(ImagesContext);
+import { Search } from "@sprinklrjs/spaceweb/search";
+
+export default function SearchBar() {
+  const context = useContext(AssetsContext);
   if (!context) {
-    throw new Error("ImageContext is undefined");
+    throw new Error("AssetsContext is undefined");
   }
-  const { images } = context;
+  const { assets } = context;
+
   const searchContext = useContext(SearchBarContext);
   if (!searchContext) {
     throw new Error("SearchBarContext is undefined");
@@ -18,14 +21,17 @@ export default function Searchbar() {
   return (
     <div className={styles.container}>
       <div className={styles.assetcount}>
-        {"All Assets (" + images.length + ")"}
+        {"All Assets (" + assets.length + ")"}
       </div>
       <div className="searchSpace">
-        <input
-          type="text"
-          placeholder="Search assets"
+        <Search
           value={searchBarText}
           onChange={(e) => setSearchBarText(e.target.value)}
+          debouncedOnChange={(e) => console.log(e.target.value)}
+          style="w-3/4"
+          variant="default"
+          placeholder="Search"
+          debounceInterval={200}
         />
       </div>
 
