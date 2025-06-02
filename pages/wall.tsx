@@ -8,11 +8,12 @@ import { useContext, useEffect, useRef } from "react";
 import { imageD } from "@/tempData/imageData";
 
 //Type
-import { imgObjectArray } from "@/types/imageType";
+
 import { ImagesContext, SearchBarContext } from "@/components/Layout";
+import { ImgObjectArrayType } from "@/types/imageType";
 
 //Function to get Images with given filters
-function getData(keyword: string): imgObjectArray {
+function getData(keyword: string): ImgObjectArrayType {
   const json = imageD;
 
   const filteredImages = json.data.photos.filter((photo) =>
@@ -51,7 +52,7 @@ Wall.getInitialProps = async () => {
   return { photos: getData("") };
 };
 
-export default function Wall({ photos }: { photos: imgObjectArray }) {
+export default function Wall({ photos }: { photos: ImgObjectArrayType }) {
   const checkImagesContext = useContext(ImagesContext);
   if (!checkImagesContext) {
     throw new Error("ImagesContext is undefined");

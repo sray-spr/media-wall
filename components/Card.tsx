@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { imgObject } from "@/types/imageType";
+import { ImgObjectType } from "@/types/imageType";
 import styles from "../styles/ImageCard.module.css";
 
-export default function Card({ imgInfo }: { imgInfo: imgObject }) {
+export default function Card({ imgInfo }: { imgInfo: ImgObjectType }) {
   return (
     <div className={styles.card}>
       <div className={styles.imageWrapper}>

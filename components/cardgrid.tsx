@@ -1,17 +1,19 @@
-import Card from "./imagecard";
-import { imgObjectArray } from "@/types/imageType";
+import Card from "./Card";
+
 import styles from "../styles/ImageGrid.module.css";
 
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
+import { ImgObjectArrayType } from "@/types/imageType";
 
 const CardWidth = 300;
 const CardHeight = 300;
 const spacing = 24;
+
 export default function CardGrid({
   imageObjects,
 }: {
-  imageObjects: imgObjectArray;
+  imageObjects: ImgObjectArrayType;
 }) {
   function generateCard({
     columnIndex,

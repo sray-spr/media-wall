@@ -1,9 +1,9 @@
-export type imgObject = {
-    id: string;
-    url: string;
-    title: string;
+export type ImgObjectType = {
+  id: string;
+  url: string;
+  title: string;
 };
 
-export type imgObjectArray = imgObject[];
+export type ImgObjectArrayType = ImgObjectType[];
 
-export const defaultImgObjectArray: imgObjectArray = [];
+export const defaultImgObjectArray: ImgObjectArrayType = [];

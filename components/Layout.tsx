@@ -1,5 +1,5 @@
 //Styles
-import { defaultImgObjectArray, imgObjectArray } from "@/types/imageType";
+import { defaultImgObjectArray, ImgObjectArrayType } from "@/types/imageType";
 import styles from "../styles/layout.module.css";
 
 //SubComponents
@@ -8,8 +8,8 @@ import Searchbar from "./Searchbar";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 export type ImagesContextType = {
-  images: imgObjectArray;
-  setImages: Dispatch<SetStateAction<imgObjectArray>>;
+  images: ImgObjectArrayType;
+  setImages: Dispatch<SetStateAction<ImgObjectArrayType>>;
 };
 
 export type SearchBarContextType = {
