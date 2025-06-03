@@ -4,39 +4,26 @@ import { NavBar } from "@/components/header/navBar";
 import { SearchBar } from "@/components/header/searchBar/SearchBar";
 
 //Hooks and Contexts
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 //Type
 import { AssetArray } from "@/types";
 
-Wall.getInitialProps = async () => {
-  console.log("Get Initial Props Ran");
-
-  const res = await fetch("http://localhost:3000/api/assets");
-  const data = await res.json();
-  const fetchedAssets: AssetArray = data.assets;
-  return { initialAssets: fetchedAssets };
-};
-
-export default function Wall({ initialAssets }: { initialAssets: AssetArray }) {
+export default function Wall() {
   const [searchBarText, setSearchBarText] = useState("");
-  const [assets, setAssets] = useState<AssetArray>(initialAssets);
-
-  const hasMounted = useRef(false);
+  const [assets, setAssets] = useState<AssetArray>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      return;
-    } else {
-      async function setData() {
-        const res = await fetch(`/api/assets?keyword=${searchBarText}`);
-        const data = await res.json();
-        const fetchedAssets: AssetArray = data.assets;
-        setAssets(fetchedAssets);
-      }
-      setData();
+    async function setData() {
+      const res = await fetch(`/api/assets?keyword=${searchBarText}`);
+      const data = await res.json();
+      const fetchedAssets: AssetArray = data.assets;
+      setAssets(fetchedAssets);
+      setLoading(false);
     }
+    setLoading(true);
+    setData();
   }, [searchBarText]);
 
   return (
@@ -49,9 +36,8 @@ export default function Wall({ initialAssets }: { initialAssets: AssetArray }) {
           setSearchBarText={setSearchBarText}
         />
       </div>
-
       <div className="mediawall">
-        <CardGrid assets={assets} />
+        {loading ? <div>Loading...</div> : <CardGrid assets={assets} />}
       </div>
     </div>
   );
