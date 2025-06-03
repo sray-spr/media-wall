@@ -10,13 +10,13 @@ import { useEffect, useState } from "react";
 import { AssetArray } from "@/types";
 
 export default function Wall() {
-  const [searchBarText, setSearchBarText] = useState("");
+  const [keyword, setKeyword] = useState("");
   const [assets, setAssets] = useState<AssetArray>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function setData() {
-      const res = await fetch(`/api/assets?keyword=${searchBarText}`);
+      const res = await fetch(`/api/assets?keyword=${keyword}`);
       const data = await res.json();
       const fetchedAssets: AssetArray = data.assets;
       setAssets(fetchedAssets);
@@ -24,17 +24,13 @@ export default function Wall() {
     }
     setLoading(true);
     setData();
-  }, [searchBarText]);
+  }, [keyword]);
 
   return (
     <div className="container">
       <div className="header">
         <NavBar />
-        <SearchBar
-          assets={assets}
-          searchBarText={searchBarText}
-          setSearchBarText={setSearchBarText}
-        />
+        <SearchBar assets={assets} setKeyword={setKeyword} />
       </div>
       <div className="mediawall">
         {loading ? <div>Loading...</div> : <CardGrid assets={assets} />}
