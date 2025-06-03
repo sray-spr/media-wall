@@ -1,44 +1,55 @@
 import { AssetArray } from "@/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-function makeid(length: number) {
-  let result = "";
+function generateRandomTitle(length: number): string {
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const charactersLength = characters.length;
+  let title = "";
+
   for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    title += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
-  return result;
+
+  return title;
 }
 
-function generateData(): AssetArray {
-  const imageData: AssetArray = Array.from({ length: 100 }, (_, i) => ({
-    id: (i + 1).toString(),
-    title: makeid(10),
-    previewUrl: `https://picsum.photos/id/${i + 200}/1920/1080`,
-    category: "image",
-  }));
-  const imageData2: AssetArray = Array.from({ length: 100 }, (_, i) => ({
-    id: (i + 101).toString(),
-    title: makeid(12),
-    previewUrl: `https://picsum.photos/id/${i + 200}/1080/1920`,
-    category: "image",
-  }));
+function generateMockAssets(): AssetArray {
+  const landscapeImages: AssetArray = [];
+  const portraitImages: AssetArray = [];
 
-  const totalData = imageData2.concat(imageData);
-  totalData.sort(() => Math.random() - 0.5);
-  return totalData;
+  for (let i = 0; i < 100; i++) {
+    landscapeImages.push({
+      id: (i + 1).toString(),
+      title: generateRandomTitle(10),
+      previewUrl: `https://picsum.photos/id/${i + 200}/1920/1080`,
+      category: "image",
+    });
+
+    portraitImages.push({
+      id: (i + 101).toString(),
+      title: generateRandomTitle(12),
+      previewUrl: `https://picsum.photos/id/${i + 200}/1080/1920`,
+      category: "image",
+    });
+  }
+
+  const allImages = [...landscapeImages, ...portraitImages];
+
+  // Shuffle the combined array
+  allImages.sort(() => Math.random() - 0.5);
+
+  return allImages;
 }
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { keyword = "" } = req.query;
 
-  const filteredAssets = generateData().filter((asset) =>
+  const filteredAssets = generateMockAssets().filter((asset) =>
     asset.title.toLowerCase().includes((keyword as string).toLowerCase())
   );
 
   setTimeout(() => {
     res.json({ assets: filteredAssets });
-  }, 1500);
+  }, 1000);
 }

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 //Type
 import { AssetArray } from "@/types";
+import { Box } from "@sprinklrjs/spaceweb/box";
 
 export default function Wall() {
   const [keyword, setKeyword] = useState("");
@@ -27,14 +28,14 @@ export default function Wall() {
   }, [keyword]);
 
   return (
-    <div className="container">
-      <div className="header">
+    <Box className="flex flex-col min-h-0">
+      <Box className="h-16">
         <NavBar />
         <SearchBar assets={assets} setKeyword={setKeyword} />
-      </div>
+      </Box>
       <div className="mediawall">
         {loading ? <div>Loading...</div> : <CardGrid assets={assets} />}
       </div>
-    </div>
+    </Box>
   );
 }
