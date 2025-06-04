@@ -1,17 +1,3 @@
-// import { Html, Head, Main, NextScript } from "next/document";
-
-// export default function Document() {
-//   return (
-//     <Html lang="en">
-//       <Head />
-//       <body className="antialiased">
-//         <Main />
-//         <NextScript />
-//       </body>
-//     </Html>
-//   );
-// }
-
 import Document, {
   Html,
   Head,
@@ -57,11 +43,11 @@ export default class MyDocument extends Document<Props> {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {/* Upload resolved spaceweb.css to cdn. This has to be added before spaceweb_hydrate styles(styletron generated styles) */}
-          <link
+          {/* <link
             href="cdn.com/spaceweb-[hash].css"
             type="text/css"
             rel="stylesheet"
-          />
+          /> */}
           {(this.props.stylesheets || []).map((sheet, i) => (
             <style
               className="_spaceweb_hydrate_"

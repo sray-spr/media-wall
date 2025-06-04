@@ -1,10 +1,9 @@
 import { Card } from "./card";
 
-import styles from "./cardGrid.module.css";
-
 import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { AssetArray } from "@/types";
+import { Box } from "@sprinklrjs/spaceweb/box";
 
 const CardWidth = 300;
 const CardHeight = 300;
@@ -33,7 +32,15 @@ const CardGrid = ({ assets }: { assets: AssetArray }) => {
   }
 
   return (
-    <div className={styles.cardGrid}>
+    <Box
+      style={{
+        height: "calc(100vh - 150px)",
+        marginLeft: "35px",
+        marginRight: "14px",
+        marginTop: "30px",
+        marginBottom: "30px",
+      }}
+    >
       <AutoSizer>
         {({ height, width }) => {
           const columnCount = Math.max(
@@ -57,7 +64,7 @@ const CardGrid = ({ assets }: { assets: AssetArray }) => {
           );
         }}
       </AutoSizer>
-    </div>
+    </Box>
   );
 };
 

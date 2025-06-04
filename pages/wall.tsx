@@ -2,13 +2,12 @@
 import { CardGrid } from "@/components/cardGrid";
 import { NavBar } from "@/components/header/navBar";
 import { SearchBar } from "@/components/header/searchBar/SearchBar";
+import { Loader } from "@sprinklrjs/spaceweb/loader";
+import { Box } from "@sprinklrjs/spaceweb/box";
 
-//Hooks and Contexts
 import { useEffect, useState } from "react";
 
-//Type
 import { AssetArray } from "@/types";
-import { Box } from "@sprinklrjs/spaceweb/box";
 
 export default function Wall() {
   const [keyword, setKeyword] = useState("");
@@ -28,14 +27,24 @@ export default function Wall() {
   }, [keyword]);
 
   return (
-    <Box className="flex flex-col min-h-0">
-      <Box className="h-16">
+    <Box className="flex flex-col w-full">
+      <Box
+        style={{ borderBottom: "1px solid #dddddd" }}
+        className="h-16 flex flex-col w-full"
+      >
         <NavBar />
         <SearchBar assets={assets} setKeyword={setKeyword} />
       </Box>
-      <div className="mediawall">
-        {loading ? <div>Loading...</div> : <CardGrid assets={assets} />}
-      </div>
+      <Box style={{ flexGrow: "1", background: "#f7f8fd" }}>
+        {loading ? (
+          <Loader
+            className="w-full h-screen flex justify-center items-center"
+            variant="spinner"
+          />
+        ) : (
+          <CardGrid assets={assets} />
+        )}
+      </Box>
     </Box>
   );
 }
