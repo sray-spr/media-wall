@@ -44,7 +44,7 @@ const Card = ({ assetInfo }: { assetInfo: Asset }) => {
 
       <Box
         style={{ height: "25%" }}
-        className="flex flex-row w-full justify-center items-center"
+        className="flex flex-row w-full justify-center items-center pr-1"
       >
         <Box
           style={{ width: "15%" }}
@@ -62,6 +62,8 @@ const Card = ({ assetInfo }: { assetInfo: Asset }) => {
             variant="body-16"
             weight="medium"
             className="flex spr-text-01 pb-0.5"
+            maxWidth={20}
+            maxLines={2}
           >
             {assetInfo.title}
           </Typography>
