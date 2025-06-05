@@ -2,7 +2,7 @@ import { Box } from "@sprinklrjs/spaceweb/box";
 import { Image } from "@sprinklrjs/spaceweb/image";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
 import { Asset } from "@/types";
-import { IconButton } from "@sprinklrjs/spaceweb/button";
+import { HoverButtons } from "./hoverButtons";
 
 const Card = ({ assetInfo }: { assetInfo: Asset }) => {
   return (
@@ -13,31 +13,7 @@ const Card = ({ assetInfo }: { assetInfo: Asset }) => {
       }}
     >
       <div className="absolute top-0 right-0 flex flex-row opacity-0 group-hover:opacity-100 w-1/4 h-9/50 justify-evenly items-center transition-opacity">
-        <IconButton
-          onClick={(e) => {
-            e.stopPropagation();
-            navigator.clipboard.writeText(assetInfo.title);
-          }}
-          bordered
-          shape="square"
-          intent="default"
-          size="xxxs"
-          tooltipContent="Copy Title"
-        >
-          <Image src="/assets/logo.png" alt="Should be Icon" />
-        </IconButton>
-        <IconButton
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          bordered
-          shape="square"
-          intent="default"
-          size="xxxs"
-          tooltipContent="Download"
-        >
-          <Image src="/assets/logo.png" alt="Should be Icon" />
-        </IconButton>
+        <HoverButtons assetInfo={assetInfo} />
       </div>
 
       <Image
