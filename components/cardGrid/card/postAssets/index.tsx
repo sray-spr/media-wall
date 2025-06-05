@@ -1,0 +1,1 @@
+export { PostAsset } from "./PostAsset";

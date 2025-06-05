@@ -1,81 +1,28 @@
 import { Box } from "@sprinklrjs/spaceweb/box";
-import { Image } from "@sprinklrjs/spaceweb/image";
-import { Typography } from "@sprinklrjs/spaceweb/typography";
 import { Asset } from "@/types";
 import { HoverButtons } from "./hoverButtons";
+import { VideoAsset } from "./videoAsset";
+import { PostAsset } from "./postAssets";
+import { ImageAsset } from "./imageAsset";
 
 const Card = ({ assetInfo }: { assetInfo: Asset }) => {
+  var content;
+  switch (assetInfo.category) {
+    case "image":
+      content = <ImageAsset assetInfo={assetInfo} />;
+      break;
+    case "video":
+      content = <VideoAsset assetInfo={assetInfo} />;
+      break;
+    case "post":
+      content = <PostAsset assetInfo={assetInfo} />;
+  }
   return (
-    <Box
-      className="group flex flex-col w-full h-full spr-border-06 overflow-hidden spr-shadow-01 hover:transition-shadow  hover:duration-500 hover:spr-shadow-02 rounded-4"
-      onClick={() => {
-        window.open(assetInfo.previewUrl, "_blank");
-      }}
-    >
+    <Box className="group flex flex-col w-full h-full spr-border-06 overflow-hidden spr-shadow-01 hover:transition-shadow  hover:duration-500 hover:spr-shadow-02 rounded-4">
       <div className="absolute top-0 right-0 flex flex-row opacity-0 group-hover:opacity-100 w-1/4 h-9/50 justify-evenly items-center transition-opacity">
         <HoverButtons assetInfo={assetInfo} />
       </div>
-
-      <Image
-        src={assetInfo.previewUrl}
-        alt="This should be an image"
-        overrides={{
-          Image: {
-            props: {
-              style: {
-                maxHeight: "100%",
-                maxWidth: "100%",
-                objectFit: "contain",
-              },
-            },
-          },
-          Root: {
-            style: {
-              height: `75%`,
-              width: `100%`,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "#DBDBDB",
-            },
-          },
-        }}
-      />
-
-      <Box
-        style={{ height: "25%" }}
-        className="flex flex-row w-full justify-center items-center pr-1"
-      >
-        <Box
-          style={{ width: "15%" }}
-          className="flex h-full justify-center items-center"
-        >
-          <Image src="/assets/logo.png" alt="Logo" width={35} height={22} />
-        </Box>
-        <Box
-          style={{
-            width: "85%",
-          }}
-          className="h-full flex flex-col justify-center items-left"
-        >
-          <Typography
-            variant="body-16"
-            weight="medium"
-            className="flex spr-text-01 pb-0.5"
-            maxWidth={20}
-            maxLines={2}
-          >
-            {assetInfo.title}
-          </Typography>
-          <Typography
-            variant="body-14"
-            weight="medium"
-            className="flex spr-text-03"
-          >
-            70 KB
-          </Typography>
-        </Box>
-      </Box>
+      {content}
     </Box>
   );
 };

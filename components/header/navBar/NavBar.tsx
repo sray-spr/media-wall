@@ -6,7 +6,12 @@ const NavBar = () => {
   return (
     <Box className="flex flex-row h-7 w-full align-center spr-tooltip-01">
       <Box className="self-center pl-3">
-        <Image src="/assets/logo.png" alt="Logo" width={35} height={22} />
+        <Image
+          src="/assets/BrandSprinklrClr.svg"
+          alt="Logo"
+          width={35}
+          height={22}
+        />
       </Box>
 
       <Typography
