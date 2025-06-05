@@ -4,7 +4,7 @@ import { Typography } from "@sprinklrjs/spaceweb/typography";
 
 const NavBar = () => {
   return (
-    <Box className="flex flex-row h-7 w-full spr-tooltip-01">
+    <Box className="flex flex-row h-7 w-full align-center spr-tooltip-01">
       <Box className="self-center pl-3">
         <Image src="/assets/logo.png" alt="Logo" width={35} height={22} />
       </Box>
@@ -12,7 +12,7 @@ const NavBar = () => {
       <Typography
         variant="display-20"
         weight="medium"
-        className="spr-text-05 w-full h-4.5 self-center pl-3"
+        className="spr-text-05 w-full self-center pl-3"
       >
         A Board
       </Typography>
