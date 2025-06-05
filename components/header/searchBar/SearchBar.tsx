@@ -15,8 +15,8 @@ const SearchBar = ({
   const [searchBarText, setSearchBarText] = useState("");
   return (
     <Box
-      style={{ flexGrow: "1", paddingInline: "3%" }}
-      className="flex flex-row justify-between items-center "
+      style={{ paddingInline: "3%" }}
+      className="grow flex flex-row justify-between items-center "
     >
       <Typography variant="body-16" weight="bold">
         {"All Assets (" + assets.length + ")"}

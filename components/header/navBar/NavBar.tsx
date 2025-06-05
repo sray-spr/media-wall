@@ -10,7 +10,7 @@ const NavBar = () => {
       </Box>
 
       <Typography
-        variant="display-18"
+        variant="display-20"
         weight="medium"
         className="spr-text-05 w-full h-4.5 self-center pl-3"
       >

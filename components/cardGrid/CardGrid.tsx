@@ -32,15 +32,7 @@ const CardGrid = ({ assets }: { assets: AssetArray }) => {
   }
 
   return (
-    <Box
-      style={{
-        height: "calc(100vh - 150px)",
-        marginLeft: "35px",
-        marginRight: "14px",
-        marginTop: "30px",
-        marginBottom: "30px",
-      }}
-    >
+    <Box className="h-full w-full overflow-auto">
       <AutoSizer>
         {({ height, width }) => {
           const columnCount = Math.max(

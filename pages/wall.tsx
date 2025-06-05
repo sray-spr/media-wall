@@ -27,18 +27,15 @@ export default function Wall() {
   }, [keyword]);
 
   return (
-    <Box className="flex flex-col w-full">
-      <Box
-        style={{ borderBottom: "1px solid #dddddd" }}
-        className="h-16 flex flex-col w-full"
-      >
+    <Box className="flex flex-col w-full h-screen overflow-hidden">
+      <Box className="h-16 flex flex-col w-full border-b-1 spr-border-03">
         <NavBar />
         <SearchBar assets={assets} setKeyword={setKeyword} />
       </Box>
-      <Box style={{ flexGrow: "1", background: "#f7f8fd" }}>
+      <Box className="grow h-0 spr-ui-02 overflow-hidden pb-3 pt-5 pl-5 pr-3">
         {loading ? (
           <Loader
-            className="w-full h-screen flex justify-center items-center"
+            className="w-full h-full flex justify-center items-center"
             variant="spinner"
           />
         ) : (

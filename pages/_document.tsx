@@ -48,6 +48,12 @@ export default class MyDocument extends Document<Props> {
             type="text/css"
             rel="stylesheet"
           /> */}
+          {/* <link
+            href="_next/static/styles/tailwind-media.css"
+            type="text/css"
+            rel="stylesheet"
+            crossOrigin="anonymous"
+          /> */}
           {(this.props.stylesheets || []).map((sheet, i) => (
             <style
               className="_spaceweb_hydrate_"
