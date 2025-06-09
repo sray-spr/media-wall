@@ -14,6 +14,11 @@ const DownloadButton = ({ assetInfo }: { assetInfo: Asset }) => {
       onClick={async (e) => {
         e.stopPropagation();
         downloadAsset();
+        alert(
+          "increase count of downloads of asset with asset ID " +
+            assetInfo.id +
+            " by one (TODO)"
+        );
       }}
       bordered
       shape="square"
