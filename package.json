@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
+    "@apollo/sandbox": "^2.7.1",
+    "@as-integrations/next": "^3.2.0",
     "@sprinklrjs/spaceweb": "^12.33.2",
     "@sprinklrjs/spaceweb-themes": "^12.33.2",
     "@types/react-window": "^1.8.8",

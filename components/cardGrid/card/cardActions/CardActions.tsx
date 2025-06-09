@@ -2,7 +2,7 @@ import { Asset } from "@/types";
 import { CopyButton } from "./copyButton";
 import { DownloadButton } from "./downloadButton";
 
-const HoverButtons = ({ assetInfo }: { assetInfo: Asset }) => {
+const CardActions = ({ assetInfo }: { assetInfo: Asset }) => {
   return (
     <>
       <CopyButton title={assetInfo.title} />
@@ -11,4 +11,4 @@ const HoverButtons = ({ assetInfo }: { assetInfo: Asset }) => {
   );
 };
 
-export { HoverButtons };
+export { CardActions };

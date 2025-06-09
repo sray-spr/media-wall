@@ -5,32 +5,27 @@ import { UtilityBar } from "@/components/header/utilityBar/UtilityBar";
 import { Loader } from "@sprinklrjs/spaceweb/loader";
 import { Box } from "@sprinklrjs/spaceweb/box";
 
-import { useEffect, useState } from "react";
-
-import { AssetArray } from "@/types";
+import { useState } from "react";
+import { useQuery } from "@apollo/client";
+import { ASSET_QUERY } from "@/graphql/queries";
 
 export default function Wall() {
   const [keyword, setKeyword] = useState("");
-  const [assets, setAssets] = useState<AssetArray>([]);
-  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    async function setData() {
-      const res = await fetch(`/api/assets?keyword=${keyword}`);
-      const data = await res.json();
-      const fetchedAssets: AssetArray = data.assets;
-      setAssets(fetchedAssets);
-      setLoading(false);
-    }
-    setLoading(true);
-    setData();
-  }, [keyword]);
+  const { data, loading, error } = useQuery(ASSET_QUERY, {
+    variables: { keyword },
+  });
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
 
   return (
     <Box className="flex flex-col w-full h-screen overflow-hidden">
       <Box className="h-16 flex flex-col w-full border-b-1 spr-border-03">
         <NavBar />
-        <UtilityBar assets={assets} setKeyword={setKeyword} />
+        <UtilityBar assets={data?.assets || []} setKeyword={setKeyword} />
       </Box>
       <Box className="grow h-0 spr-ui-02 overflow-hidden pb-3 pt-5 pl-5 pr-3">
         {loading ? (
@@ -39,7 +34,7 @@ export default function Wall() {
             variant="spinner"
           />
         ) : (
-          <CardGrid assets={assets} />
+          <CardGrid assets={data?.assets || []} />
         )}
       </Box>
     </Box>
