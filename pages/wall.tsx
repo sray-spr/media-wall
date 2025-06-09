@@ -1,7 +1,7 @@
 //Imports
 import { CardGrid } from "@/components/cardGrid";
 import { NavBar } from "@/components/header/navBar";
-import { SearchBar } from "@/components/header/searchBar/SearchBar";
+import { UtilityBar } from "@/components/header/utilityBar/UtilityBar";
 import { Loader } from "@sprinklrjs/spaceweb/loader";
 import { Box } from "@sprinklrjs/spaceweb/box";
 
@@ -30,7 +30,7 @@ export default function Wall() {
     <Box className="flex flex-col w-full h-screen overflow-hidden">
       <Box className="h-16 flex flex-col w-full border-b-1 spr-border-03">
         <NavBar />
-        <SearchBar assets={assets} setKeyword={setKeyword} />
+        <UtilityBar assets={assets} setKeyword={setKeyword} />
       </Box>
       <Box className="grow h-0 spr-ui-02 overflow-hidden pb-3 pt-5 pl-5 pr-3">
         {loading ? (
