@@ -5,9 +5,9 @@ import { saveAs } from "file-saver";
 
 const DownloadButton = ({ assetInfo }: { assetInfo: Asset }) => {
   async function downloadAsset() {
-    const response = await fetch(assetInfo.previewUrl);
+    const response = await fetch(assetInfo.mediaUrl);
     const blob = await response.blob();
-    saveAs(blob, assetInfo.title);
+    saveAs(blob, assetInfo.title + "." + assetInfo.extension);
   }
   return (
     <IconButton

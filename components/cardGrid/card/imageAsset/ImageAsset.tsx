@@ -8,7 +8,7 @@ const ImageAsset = ({ assetInfo }: { assetInfo: Asset }) => {
     <>
       <Image
         onClick={() => {
-          window.open(assetInfo.previewUrl, "_blank");
+          window.open(assetInfo.mediaUrl, "_blank");
         }}
         src={assetInfo.previewUrl}
         alt="This should be an image"

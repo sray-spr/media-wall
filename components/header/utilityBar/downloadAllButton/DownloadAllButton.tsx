@@ -7,9 +7,9 @@ const DownloadAllButton = ({ assets }: { assets: AssetArray }) => {
   async function downloadAllAssets() {
     const zip = new JSZip();
     for (const asset of assets) {
-      const response = await fetch(asset.previewUrl);
+      const response = await fetch(asset.mediaUrl);
       const blob = await response.blob();
-      zip.file(asset.title + ".png", blob);
+      zip.file(asset.title + "." + asset.extension, blob);
     }
     const zipBlob = await zip.generateAsync({ type: "blob" });
     saveAs(zipBlob, "assets.zip");

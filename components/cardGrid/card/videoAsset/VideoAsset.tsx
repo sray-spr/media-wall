@@ -8,8 +8,8 @@ const VideoAsset = ({ assetInfo }: { assetInfo: Asset }) => {
   return (
     <>
       <Video
-        src={assetInfo.previewUrl}
-        poster="https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2018/01/12201051/cute-puppy-body-image.jpg"
+        src={assetInfo.mediaUrl}
+        poster={assetInfo.previewUrl}
         overrides={{
           Video: {
             props: {
