@@ -5,6 +5,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "@sprinklrjs/spaceweb/button";
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 const SearchBar = ({
   assets,
   setKeyword,
@@ -13,6 +15,16 @@ const SearchBar = ({
   setKeyword: Dispatch<SetStateAction<string>>;
 }) => {
   const [searchBarText, setSearchBarText] = useState("");
+  async function downloadAllAssets() {
+    const zip = new JSZip();
+    for (const asset of assets) {
+      const response = await fetch(asset.previewUrl);
+      const blob = await response.blob();
+      zip.file(asset.title + ".png", blob);
+    }
+    const zipBlob = await zip.generateAsync({ type: "blob" });
+    saveAs(zipBlob, "assets.zip");
+  }
   return (
     <Box
       style={{ paddingInline: "3%" }}
@@ -36,7 +48,13 @@ const SearchBar = ({
           },
         }}
       />
-      <Button onClick={() => alert("click")} variant="tertiary" size="sm">
+      <Button
+        onClick={() => {
+          downloadAllAssets();
+        }}
+        variant="tertiary"
+        size="sm"
+      >
         Download All
       </Button>
     </Box>

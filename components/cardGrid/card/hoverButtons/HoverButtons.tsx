@@ -1,8 +1,14 @@
 import { Asset } from "@/types";
 import { IconButton } from "@sprinklrjs/spaceweb/button";
 import { Image } from "@sprinklrjs/spaceweb/image";
+import { saveAs } from "file-saver";
 
 const HoverButtons = ({ assetInfo }: { assetInfo: Asset }) => {
+  async function downloadAsset() {
+    const response = await fetch(assetInfo.previewUrl);
+    const blob = await response.blob();
+    saveAs(blob, assetInfo.title);
+  }
   return (
     <>
       <IconButton
@@ -16,11 +22,17 @@ const HoverButtons = ({ assetInfo }: { assetInfo: Asset }) => {
         size="xxxs"
         tooltipContent="Copy Title"
       >
-        <Image src="/assets/logo.png" alt="Should be Icon" />
+        <Image
+          src="/assets/SolidCopy.svg"
+          width={20}
+          height={15}
+          alt="Should be Icon"
+        />
       </IconButton>
       <IconButton
-        onClick={(e) => {
+        onClick={async (e) => {
           e.stopPropagation();
+          downloadAsset();
         }}
         bordered
         shape="square"
@@ -28,7 +40,12 @@ const HoverButtons = ({ assetInfo }: { assetInfo: Asset }) => {
         size="xxxs"
         tooltipContent="Download"
       >
-        <Image src="/assets/logo.png" alt="Should be Icon" />
+        <Image
+          src="/assets/SolidDownload.svg"
+          width={20}
+          height={15}
+          alt="Should be Icon"
+        />
       </IconButton>
     </>
   );
