@@ -1,9 +1,18 @@
-import { Asset } from "@/types";
+import { PhotoAsset } from "@/types";
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Image } from "@sprinklrjs/spaceweb/image";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
+import { ReactElement } from "react";
 
-const ImageAsset = ({ assetInfo }: { assetInfo: Asset }) => {
+const ImageAsset = ({ assetInfo }: { assetInfo: PhotoAsset }): ReactElement => {
+  const date = new Date(assetInfo.createdTime * 1000);
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
   return (
     <>
       <Image
@@ -95,7 +104,7 @@ const ImageAsset = ({ assetInfo }: { assetInfo: Asset }) => {
             maxWidth={20}
             maxLines={1}
           >
-            Date Created: Jun 2, 2025
+            Date Created: {formattedDate}
           </Typography>
         </Box>
       </Box>

@@ -1,8 +1,9 @@
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Image } from "@sprinklrjs/spaceweb/image";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
+import { ReactElement } from "react";
 
-const NavBar = () => {
+const NavBar = (): ReactElement => {
   return (
     <Box className="flex flex-row h-7 w-full align-center spr-tooltip-01">
       <Box className="self-center pl-3">

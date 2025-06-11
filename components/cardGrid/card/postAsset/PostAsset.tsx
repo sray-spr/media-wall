@@ -1,40 +1,47 @@
-import { Asset } from "@/types";
+import { PostAsset as PostAssetType } from "@/types";
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Image } from "@sprinklrjs/spaceweb/image";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
+import { PostChannelLogo } from "./postChannelLogo";
+import { PostAssetImage, PostAssetVideo } from "./postAssetMedia";
+import { ReactElement } from "react";
 
-const PostAsset = ({ assetInfo }: { assetInfo: Asset }) => {
+const PostAsset = ({
+  assetInfo,
+}: {
+  assetInfo: PostAssetType;
+}): ReactElement => {
+  const date = new Date(assetInfo.createdTime * 1000);
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  var media;
+  if (assetInfo.postAssetContent.type === "PHOTO") {
+    media = <PostAssetImage assetInfo={assetInfo.postAssetContent} />;
+  } else {
+    media = <PostAssetVideo assetInfo={assetInfo.postAssetContent} />;
+  }
   return (
     <>
-      <Image
-        onClick={() => {
-          window.open(assetInfo.mediaUrl, "_blank");
-        }}
-        src={assetInfo.previewUrl}
-        alt="This should be an image"
-        overrides={{
-          Image: {
-            props: {
-              style: {
-                maxHeight: "100%",
-                maxWidth: "100%",
-                objectFit: "contain",
-              },
-            },
-          },
-          Root: {
-            style: {
-              height: `80%`,
-              width: `100%`,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "white",
-            },
-          },
-        }}
-      />
-
+      <Box style={{ height: "20%" }} className="bg-white flex flex-col">
+        <Box style={{ height: "50%" }} className="px-2 py-1.5">
+          <PostChannelLogo channel={assetInfo.postAssetChannel} />
+        </Box>
+        <Typography
+          variant="body-12"
+          weight="medium"
+          className="flex grow spr-text-01 pl-2"
+          maxWidth={18}
+          maxLines={1}
+        >
+          {assetInfo.title}
+        </Typography>
+      </Box>
+      {media}
       <Box
         style={{ height: "9%" }}
         className="flex flex-row w-full rounded-8 bg-white justify-center items-center pr-0.5"
@@ -52,7 +59,7 @@ const PostAsset = ({ assetInfo }: { assetInfo: Asset }) => {
             maxWidth={20}
             maxLines={1}
           >
-            {assetInfo.title}
+            {assetInfo.postAssetContent.title}
           </Typography>
         </Box>
         <Box
@@ -95,7 +102,7 @@ const PostAsset = ({ assetInfo }: { assetInfo: Asset }) => {
             maxWidth={20}
             maxLines={1}
           >
-            Date Created: Jun 2, 2025
+            Date Created: {formattedDate}
           </Typography>
         </Box>
       </Box>

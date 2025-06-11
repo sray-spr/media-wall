@@ -1,20 +1,21 @@
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Asset } from "@/types";
 import { CardActions } from "./cardActions";
-import { VideoAsset } from "./videoAsset";
 import { PostAsset } from "./postAsset";
 import { ImageAsset } from "./imageAsset";
+import { VideoAsset } from "./videoAsset";
+import { ReactElement } from "react";
 
-const Card = ({ assetInfo }: { assetInfo: Asset }) => {
+const Card = ({ assetInfo }: { assetInfo: Asset }): ReactElement => {
   var content;
-  switch (assetInfo.category) {
-    case "image":
+  switch (assetInfo.type) {
+    case "PHOTO":
       content = <ImageAsset assetInfo={assetInfo} />;
       break;
-    case "video":
+    case "VIDEO":
       content = <VideoAsset assetInfo={assetInfo} />;
       break;
-    case "post":
+    case "POST":
       content = <PostAsset assetInfo={assetInfo} />;
   }
   return (

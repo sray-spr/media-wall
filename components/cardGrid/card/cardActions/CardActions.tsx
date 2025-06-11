@@ -1,12 +1,13 @@
 import { Asset } from "@/types";
 import { CopyButton } from "./copyButton";
-import { DownloadButton } from "./downloadButton";
+import { DownloadAction } from "./downloadAction";
+import { ReactElement } from "react";
 
-const CardActions = ({ assetInfo }: { assetInfo: Asset }) => {
+const CardActions = ({ assetInfo }: { assetInfo: Asset }): ReactElement => {
   return (
     <>
       <CopyButton title={assetInfo.title} />
-      <DownloadButton assetInfo={assetInfo} />
+      <DownloadAction assetInfo={assetInfo} />
     </>
   );
 };

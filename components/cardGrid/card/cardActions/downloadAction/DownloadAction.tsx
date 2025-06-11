@@ -1,19 +1,16 @@
 import { Asset } from "@/types";
 import { IconButton } from "@sprinklrjs/spaceweb/button";
 import { Image } from "@sprinklrjs/spaceweb/image";
-import { saveAs } from "file-saver";
+import { ReactElement } from "react";
+import { useDownloadAsset } from "./hooks/useDownloadAsset";
 
-const DownloadButton = ({ assetInfo }: { assetInfo: Asset }) => {
-  async function downloadAsset() {
-    const response = await fetch(assetInfo.mediaUrl);
-    const blob = await response.blob();
-    saveAs(blob, assetInfo.title + "." + assetInfo.extension);
-  }
+const DownloadAction = ({ assetInfo }: { assetInfo: Asset }): ReactElement => {
+  const { downloadAsset } = useDownloadAsset();
   return (
     <IconButton
       onClick={async (e) => {
         e.stopPropagation();
-        downloadAsset();
+        downloadAsset({ assetInfo });
         alert(
           "increase count of downloads of asset with asset ID " +
             assetInfo.id +
@@ -36,4 +33,4 @@ const DownloadButton = ({ assetInfo }: { assetInfo: Asset }) => {
   );
 };
 
-export { DownloadButton };
+export { DownloadAction };

@@ -4,12 +4,13 @@ import { FixedSizeGrid as Grid, GridChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { AssetArray } from "@/types";
 import { Box } from "@sprinklrjs/spaceweb/box";
+import { ReactElement } from "react";
 
 const CardWidth = 300;
 const CardHeight = 300;
 const spacing = 24;
 
-const CardGrid = ({ assets }: { assets: AssetArray }) => {
+const CardGrid = ({ assets }: { assets: AssetArray }): ReactElement => {
   function generateCard({
     columnIndex,
     rowIndex,

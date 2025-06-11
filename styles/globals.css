@@ -15,27 +15,3 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-}
-
-.header {
-  height: 92px;
-  flex-shrink: 0;
-  background-color: #ffffff;
-  border-bottom: 1px solid #dddddd;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-
-.mediawall {
-  flex: 1;
-  overflow-y: auto;
-  background: #f7f8fd;
-}

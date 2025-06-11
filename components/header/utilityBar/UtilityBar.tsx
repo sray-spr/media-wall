@@ -1,12 +1,12 @@
 import { AssetArray } from "@/types";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactElement, SetStateAction } from "react";
 
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
 
 import { SearchBar } from "./searchBar";
-import { DownloadAllButton } from "./downloadAllButton";
+import { DownloadAllHandler } from "./downloadAllHandler";
 
 const UtilityBar = ({
   assets,
@@ -14,7 +14,7 @@ const UtilityBar = ({
 }: {
   assets: AssetArray;
   setKeyword: Dispatch<SetStateAction<string>>;
-}) => {
+}): ReactElement => {
   return (
     <Box
       style={{ paddingInline: "3%" }}
@@ -24,7 +24,7 @@ const UtilityBar = ({
         {"All Assets (" + assets.length + ")"}
       </Typography>
       <SearchBar setKeyword={setKeyword} />
-      <DownloadAllButton assets={assets} />
+      <DownloadAllHandler assets={assets} />
     </Box>
   );
 };

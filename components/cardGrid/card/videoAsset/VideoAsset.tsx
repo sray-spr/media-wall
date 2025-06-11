@@ -1,10 +1,22 @@
-import { Asset } from "@/types";
+import { VideoAsset as VideoAssetType } from "@/types";
 import { Box } from "@sprinklrjs/spaceweb/box";
 import { Image } from "@sprinklrjs/spaceweb/image";
 import { Video } from "@sprinklrjs/spaceweb/video";
 import { Typography } from "@sprinklrjs/spaceweb/typography";
+import { ReactElement } from "react";
 
-const VideoAsset = ({ assetInfo }: { assetInfo: Asset }) => {
+const VideoAsset = ({
+  assetInfo,
+}: {
+  assetInfo: VideoAssetType;
+}): ReactElement => {
+  const date = new Date(assetInfo.createdTime * 1000);
+
+  const formattedDate = date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
   return (
     <>
       <Video
@@ -93,7 +105,7 @@ const VideoAsset = ({ assetInfo }: { assetInfo: Asset }) => {
             maxWidth={20}
             maxLines={1}
           >
-            Date Created: Jun 2, 2025
+            Date Created: {formattedDate}
           </Typography>
         </Box>
       </Box>

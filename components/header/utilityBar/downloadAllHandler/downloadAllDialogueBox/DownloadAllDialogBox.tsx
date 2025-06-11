@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, ReactElement, SetStateAction, useState } from "react";
 import {
   Modal,
   ModalHeader,
@@ -14,7 +14,7 @@ const DownloadAllDialogBox = ({
 }: {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+}): ReactElement => {
   const [emailIDs, setEmailIDs] = useState("");
   return (
     <Modal

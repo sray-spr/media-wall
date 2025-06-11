@@ -1,20 +1,38 @@
-export type AssetCategory = "image" | "video" | "post";
-export type MediaExtension =
-  | "jpg"
-  | "jpeg"
-  | "png"
-  | "mp3"
-  | "mp4"
-  | "pdf"
-  | "doc";
-
-export type Asset = {
+export type PhotoAsset = {
   id: string;
   title: string;
+  type: "PHOTO";
+  createdTime: number;
   previewUrl: string;
   mediaUrl: string;
-  extension: MediaExtension;
-  category: AssetCategory;
+  extension: "jpg" | "jpeg" | "png";
 };
+export type VideoAsset = {
+  id: string;
+  title: string;
+  type: "VIDEO";
+  createdTime: number;
+  previewUrl: string;
+  mediaUrl: string;
+  extension: "mp3" | "mp4";
+};
+
+export type AssetChannel =
+  | "FACEBOOK"
+  | "INSTAGRAM"
+  | "YOUTUBE"
+  | "LINKEDIN"
+  | "TWITTER";
+
+export type PostAsset = {
+  id: string;
+  title: string;
+  type: "POST";
+  createdTime: number;
+  postAssetChannel: AssetChannel;
+  postAssetContent: PhotoAsset | VideoAsset;
+};
+
+export type Asset = PhotoAsset | VideoAsset | PostAsset;
 
 export type AssetArray = Asset[];

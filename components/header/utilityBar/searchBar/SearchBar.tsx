@@ -1,11 +1,11 @@
 import { Search } from "@sprinklrjs/spaceweb/search";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, ReactElement, SetStateAction, useState } from "react";
 
 const SearchBar = ({
   setKeyword,
 }: {
   setKeyword: Dispatch<SetStateAction<string>>;
-}) => {
+}): ReactElement => {
   const [searchBarText, setSearchBarText] = useState("");
   return (
     <Search

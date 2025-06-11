@@ -5,21 +5,17 @@ import { UtilityBar } from "@/components/header/utilityBar/UtilityBar";
 import { Loader } from "@sprinklrjs/spaceweb/loader";
 import { Box } from "@sprinklrjs/spaceweb/box";
 
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { ASSET_QUERY } from "@/graphql/queries";
+import { ASSET_QUERY } from "@/graphql/graphql-client/queries";
+import { Button } from "@sprinklrjs/spaceweb/button";
 
-export default function Wall() {
+export default function Wall(): ReactElement {
   const [keyword, setKeyword] = useState("");
 
-  const { data, loading, error } = useQuery(ASSET_QUERY, {
+  const { data, loading, error, refetch } = useQuery(ASSET_QUERY, {
     variables: { keyword },
   });
-
-  if (error) {
-    console.error(error);
-    return null;
-  }
 
   return (
     <Box className="flex flex-col w-full h-screen overflow-hidden">
@@ -33,6 +29,11 @@ export default function Wall() {
             className="w-full h-full flex justify-center items-center"
             variant="spinner"
           />
+        ) : error ? (
+          <Box className="w-full h-full flex flex-col justify-center items-center">
+            <h1>Error Fetching Data</h1>
+            <Button onClick={() => refetch()}>Refetch</Button>
+          </Box>
         ) : (
           <CardGrid assets={data?.assets || []} />
         )}
