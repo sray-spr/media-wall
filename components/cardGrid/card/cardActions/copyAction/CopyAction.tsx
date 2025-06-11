@@ -2,7 +2,7 @@ import { IconButton } from "@sprinklrjs/spaceweb/button";
 import { Image } from "@sprinklrjs/spaceweb/image";
 import { ReactElement } from "react";
 
-const CopyButton = ({ title }: { title: string }): ReactElement => {
+const CopyAction = ({ title }: { title: string }): ReactElement => {
   return (
     <IconButton
       onClick={(e) => {
@@ -25,4 +25,4 @@ const CopyButton = ({ title }: { title: string }): ReactElement => {
   );
 };
 
-export { CopyButton };
+export { CopyAction };
